@@ -24,5 +24,19 @@ namespace FoodListRazor.Pages.FoodList
         {
             Foods = await _context.Food.ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var food = await _context.Food.FindAsync(id);
+            if(food == null)
+            {
+                return NotFound();
+            }
+            _context.Food.Remove(food);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("Index");
+
+        }
     }
 }
