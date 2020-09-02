@@ -31,6 +31,7 @@ namespace FoodListRazor.Pages.FoodList
             if(ModelState.IsValid)
             {
                 var FoodFromDb = await _context.Food.FirstOrDefaultAsync(f => f.Id == id);
+
                 FoodFromDb.Name = Food.Name;
                 FoodFromDb.Chef = Food.Chef;
                 FoodFromDb.Country = Food.Country;
